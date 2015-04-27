@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateLibroTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateLibroLabel_idlibro}" for="idlibro" />
+                    <h:inputText id="idlibro" value="#{libroController.selected.idlibro}" title="#{bundle.CreateLibroTitle_idlibro}" required="true" requiredMessage="#{bundle.CreateLibroRequiredMessage_idlibro}"/>
+                    <h:outputLabel value="#{bundle.CreateLibroLabel_nombrelibro}" for="nombrelibro" />
+                    <h:inputText id="nombrelibro" value="#{libroController.selected.nombrelibro}" title="#{bundle.CreateLibroTitle_nombrelibro}" required="true" requiredMessage="#{bundle.CreateLibroRequiredMessage_nombrelibro}"/>
+                    <h:outputLabel value="#{bundle.CreateLibroLabel_fechaedicion}" for="fechaedicion" />
+                    <h:inputText id="fechaedicion" value="#{libroController.selected.fechaedicion}" title="#{bundle.CreateLibroTitle_fechaedicion}" required="true" requiredMessage="#{bundle.CreateLibroRequiredMessage_fechaedicion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateLibroLabel_idautor}" for="idautor" />
+                    <h:selectOneMenu id="idautor" value="#{libroController.selected.idautor}" title="#{bundle.CreateLibroTitle_idautor}" required="true" requiredMessage="#{bundle.CreateLibroRequiredMessage_idautor}">
+                        <f:selectItems value="#{autorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{libroController.create}" value="#{bundle.CreateLibroSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{libroController.prepareList}" value="#{bundle.CreateLibroShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateLibroIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

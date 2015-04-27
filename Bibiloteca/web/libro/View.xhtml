@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewLibroTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewLibroLabel_idlibro}"/>
+                    <h:outputText value="#{libroController.selected.idlibro}" title="#{bundle.ViewLibroTitle_idlibro}"/>
+                    <h:outputText value="#{bundle.ViewLibroLabel_nombrelibro}"/>
+                    <h:outputText value="#{libroController.selected.nombrelibro}" title="#{bundle.ViewLibroTitle_nombrelibro}"/>
+                    <h:outputText value="#{bundle.ViewLibroLabel_fechaedicion}"/>
+                    <h:outputText value="#{libroController.selected.fechaedicion}" title="#{bundle.ViewLibroTitle_fechaedicion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewLibroLabel_idautor}"/>
+                    <h:outputText value="#{libroController.selected.idautor}" title="#{bundle.ViewLibroTitle_idautor}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{libroController.destroyAndView}" value="#{bundle.ViewLibroDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewLibroEditLink}"/>
+                <br />
+                <h:commandLink action="#{libroController.prepareCreate}" value="#{bundle.ViewLibroCreateLink}" />
+                <br />
+                <h:commandLink action="#{libroController.prepareList}" value="#{bundle.ViewLibroShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewLibroIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

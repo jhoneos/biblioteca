@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAutorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAutorLabel_idautor}" for="idautor" />
+                    <h:inputText id="idautor" value="#{autorController.selected.idautor}" title="#{bundle.EditAutorTitle_idautor}" required="true" requiredMessage="#{bundle.EditAutorRequiredMessage_idautor}"/>
+                    <h:outputLabel value="#{bundle.EditAutorLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{autorController.selected.nombre}" title="#{bundle.EditAutorTitle_nombre}" required="true" requiredMessage="#{bundle.EditAutorRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditAutorLabel_apellidos}" for="apellidos" />
+                    <h:inputText id="apellidos" value="#{autorController.selected.apellidos}" title="#{bundle.EditAutorTitle_apellidos}" required="true" requiredMessage="#{bundle.EditAutorRequiredMessage_apellidos}"/>
+                    <h:outputLabel value="#{bundle.EditAutorLabel_fechanacimiento}" for="fechanacimiento" />
+                    <h:inputText id="fechanacimiento" value="#{autorController.selected.fechanacimiento}" title="#{bundle.EditAutorTitle_fechanacimiento}" required="true" requiredMessage="#{bundle.EditAutorRequiredMessage_fechanacimiento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditAutorLabel_idpais}" for="idpais" />
+                    <h:selectOneMenu id="idpais" value="#{autorController.selected.idpais}" title="#{bundle.EditAutorTitle_idpais}" required="true" requiredMessage="#{bundle.EditAutorRequiredMessage_idpais}">
+                        <f:selectItems value="#{paisController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{autorController.update}" value="#{bundle.EditAutorSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAutorViewLink}"/>
+                <br />
+                <h:commandLink action="#{autorController.prepareList}" value="#{bundle.EditAutorShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAutorIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
